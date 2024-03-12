@@ -1,0 +1,43 @@
+﻿@{
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+<style>
+table {
+    width: 80%;
+    margin: 20px;
+    border-collapse: collapse;
+    float: left;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* Table 1 */
+  .table1 {
+    border: 2px solid black;
+  }
+
+</style>
+
+<h3>Tên khoa: @ViewBag.Khoa.Tenkhoa</h3>
+
+<table border="1" class="table1">
+    <tr>
+        <th>Tên bác sĩ</th>
+        <th>Ngày sinh</th>
+        <th>Mã khoa</th>
+    </tr>
+    @foreach (var bacsi in ViewBag.khoa.Bacsis)
+    {
+        <tr>
+            <td>@bacsi.Tenbs</td>
+            <td>@bacsi.Ngaysinh.ToString("dd/MM/yyyy")</td>
+            <td>@bacsi.Makhoa</td>
+        </tr>
+    }
+</table>
+</table>

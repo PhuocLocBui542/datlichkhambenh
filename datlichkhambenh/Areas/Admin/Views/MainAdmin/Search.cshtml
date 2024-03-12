@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<h2><center>Tìm kiếm lịch khám</center></h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    $(function () {
+        var dateFormat = "dd/mm/yy",
+            from = $("#from")
+                .datepicker({
+                    defaultDate: "+1w",
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    dateFormat: dateFormat
+                })
+                .on("change", function () {
+                    to.datepicker("option", "minDate", getDate(this));
+                }),
+            to = $("#to").datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                dateFormat: dateFormat
+            })
+                .on("change", function () {
+                    from.datepicker("option", "maxDate", getDate(this));
+                });
+
+        function getDate(element) {
+            var date;
+            try {
+                date = $.datepicker.parseDate(dateFormat, element.value);
+            } catch (error) {
+                date = null;
+            }
+
+            return date;
+        }
+    });
+</script>
+<title>Thanh tìm kiếm HTML</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+
+<h2>Tìm kiếm</h2>
+<form asp-controller="mainadmin" asp-action="search" method="get">
+    <td>Ngày bắt đầu</td>
+    <input type="text" id="from" name="from" value="@ViewBag.from">
+    <td>Ngày kết thúc</td>
+    <input type="text" id="to" name="to" value="@ViewBag.to">
+    <input type="submit" value="Tìm kiếm">
+</form>
+</br>
+<form>
+    <table>
+  <tr>
+    <th>Ngày Khám</th>
+    <th>Bệnh nhân</th>
+    <th>Bác sĩ</th>
+    <th>Nội dung</th>
+  </tr>
+            <tr>
+                @foreach (var lichkham in ViewBag.lichkhams)
+                {
+                    <td>@lichkham.Ngaykham</td>    
+                    <td>@lichkham.Mabn.Tenbn</td>    
+                    <td>@lichkham.Mabs.Tenbs</td>    
+                    <td>@lichkham.Noidung</td>    
+                }
+            </tr>
+</table>
+</form>
+</body>
+</html>

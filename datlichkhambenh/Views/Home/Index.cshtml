@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h3><center>Home</center></h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Four Symmetrical List Tables</title>
+<style>
+  /* Common table styles */
+  table {
+    width: 50%;
+    margin: 20px;
+    border-collapse: collapse;
+    float: left;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* Table 1 */
+  .table1 {
+    border: 2px solid black;
+  }
+
+  .top-right-link {
+    position: fixed; /* Vị trí cố định */
+    top: 0px; /* Khoảng cách từ trên xuống */
+    right: 0px; /* Khoảng cách từ phải sang trái */
+    background-color: #f44336; /* Màu nền */
+    color: white; /* Màu chữ */
+    padding: 10px 15px; /* Kích thước lề */
+    text-decoration: none; /* Không gạch chân */
+    border-radius: 5px; /* Bo tròn viền */
+  }
+
+  /* Table 2 */
+</style>
+</head>
+<body>
+<a asp-action="info" asp-controller="home" class="top-right-link">Thông tin bệnh nhân</a>
+<h3><center>Welcome @ViewBag.username</center></h3>
+<table class="table1">
+        <thead>
+    <tr>
+      <th>Tên Khoa</th>
+      <th>Thông tin</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var khoa in ViewBag.khoas)
+    {
+        <tr>
+            
+            <td>
+                @khoa.Tenkhoa
+            </td>
+            <td>
+                <a asp-controller="home" asp-action="detailsid" asp-route-makhoa="@khoa.Makhoa">Ấn để xem</a>
+            </td>
+        </tr>
+    }
+</tbody>
+</table>
+
+</body>
+</html>

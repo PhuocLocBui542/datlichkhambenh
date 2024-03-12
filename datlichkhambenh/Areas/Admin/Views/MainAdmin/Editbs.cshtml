@@ -1,0 +1,29 @@
+﻿@model datlichkhambenh.Models.Khoa
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sửa Dữ Liệu</title>
+</head>
+<body>
+
+<h2>Sửa khoa</h2>
+
+<form method="POST" asp-action="editbs" asp-controller="mainadmin" enctype="multipart/form-data">
+  <label for="textbox1">Tên Khoa:</label>
+  
+ <tr>
+     <td>
+         <input type="text" asp-for="Tenkhoa" />
+     </td>
+ </tr>
+  
+  <button type="submit">Save</button>
+</form>
+
+</body>
+</html>

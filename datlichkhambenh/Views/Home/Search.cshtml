@@ -1,0 +1,45 @@
+﻿@{
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+<h2><center>Tìm Kiếm Bệnh nhân</center></h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style>
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    margin-right: 8px;
+  }
+  .search-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+    <form asp-controller="home" asp-action="searchbn" method="get">
+    <label>Mã bệnh nhân:</label>
+    <input type="text" name="mabn" value="@ViewBag.mabn" />
+    <button type="submit">Tìm Kiếm</button>
+    </form>
+<div class="search-container">
+    <table>
+        <tr>
+            
+        </tr>
+    </table>
+</div>
+</body>
+</html>

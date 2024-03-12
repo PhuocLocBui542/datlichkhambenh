@@ -1,0 +1,59 @@
+﻿@model datlichkhambenh.Models.Bacsi
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#ngaysinh").datepicker({
+            dateFormat: 'mm/dd/yy'
+        });
+    });
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thêm Dữ Liệu</title>
+</head>
+<body>
+
+<h2>Thêm Bác sĩ</h2>
+
+<form method="POST" asp-action="adddt" asp-controller="mainadmin" enctype="multipart/form-data">
+  <label for="textbox1">Têm Bác sĩ:</label>
+  
+ <tr>
+     <td>
+         <input type="text" asp-for="Tenbs" />
+     </td>
+ </tr>
+
+ <label for="textbox2">Ngày sinh:</label>
+  <tr>
+     <td>
+         <input type="text" asp-for="Ngaysinh" id="ngaysinh" asp-format="{0:dd/MM/yyyy}" />
+     </td>
+ </tr>
+
+ <label for="textbox3">Khoa:</label>
+  <tr>
+     <td>
+         <select asp-for="Makhoa">
+                    @foreach (var khoa in ViewBag.khoas)
+                    {
+                        <option value="@khoa.Makhoa">@khoa.Tenkhoa</option>
+                    }
+                </select>
+     </td>
+ </tr>
+  <button type="submit">Save</button>
+</form>
+
+</body>
+</html>

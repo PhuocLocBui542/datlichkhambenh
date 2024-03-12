@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Four Symmetrical List Tables</title>
+<style>
+  /* Common table styles */
+  table {
+    width: 45%;
+    margin: 20px;
+    border-collapse: collapse;
+    float: left;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+
+  /* Table 1 */
+  .table1 {
+    border: 2px solid black;
+  }
+
+  /* Table 2 */
+  .table2 {
+    border: 2px dashed blue;
+  }
+
+</style>
+</head>
+<body>
+<br />
+@TempData["Msg"]
+<br />
+<table class="table1">
+  <thead>
+    <tr>
+      <th>Mã Khoa</th>
+      <th>Tên Khoa</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var khoa in ViewBag.khoas)
+    {
+        <tr>
+            <td>@khoa.Makhoa</td>
+            <td>@khoa.Tenkhoa</td>
+            <td>
+                <a asp-controller="mainadmin" asp-action="deletebs" asp-route-makhoa="@khoa.Makhoa" onclick="return confirm('Are you sure?')" >Delete</a>
+                <a asp-controller="mainadmin" asp-action="editbs" asp-route-makhoa="@khoa.Makhoa">Edit</a>
+            </td>
+        </tr>
+    }
+            <!-- Add more rows as needed -->
+  </tbody>
+</table>
+
+<table class="table2">
+  <thead>
+    <tr>
+      <th>Mã Bác Sĩ</th>
+      <th></th>
+      <th>Tên Bác Sĩ</th>
+      <th>Ngày Sinh</th>
+      <th>Mã Khoa</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach (var bacsi in ViewBag.bacsis) 
+      {
+      <tr>
+        <td>@bacsi.Mabs<td>
+        <td>
+            <a asp-controller="mainadmin" asp-action="details" asp-route-mabs="@bacsi.Mabs">@bacsi.Tenbs</a>
+        </td>
+        <td>@bacsi.Ngaysinh.ToString("dd/MM/yyyy")</td>
+        <td>@bacsi.Makhoa</td>
+        <td>
+                <a asp-controller="mainadmin" asp-action="deletedt" asp-route-mabs="@bacsi.Mabs" onclick="return confirm('Are you sure?')" >Delete</a>
+                <a asp-controller="mainadmin" asp-action="editdt" asp-route-mabs="@bacsi.Mabs">Edit</a>
+            </td>
+       </tr>          
+      }
+           
+    <!-- Add more rows as needed -->
+  </tbody>
+</table>
+
+</body>
+</html>

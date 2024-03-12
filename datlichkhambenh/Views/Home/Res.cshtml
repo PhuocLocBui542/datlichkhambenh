@@ -1,0 +1,53 @@
+﻿@{
+	Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@model datlichkhambenh.Models.Lichkham
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#ngaykham").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+</script>
+
+<title>Form Đăng ký lịch khám bệnh</title>
+</head>
+<body>
+<h2>Đăng ký lịch khám bệnh</h2>
+<form method="post" asp-controller="home" asp-action="res">
+    <label for="thong-tin-nguoi-dang-ki">Thông tin người đăng kí:</label>
+    <label >@ViewBag.username</label><br />
+
+    <label for="ten-benh-nhan">Tên bệnh nhân:</label>
+    <input type="text" id="tenbn" name="tenbn" readonly required/><br><br>
+    
+    <label>Ngày đăng kí khám:</label>
+    <input class="text" type="text" asp-for="Ngaykham" id="ngaykham" asp-format="{0:MM/dd/yyyy}" required="">
+
+    <br><br>
+    
+    <label for="bac-si">Chọn bác sĩ:</label>
+    <select id="tenbs" name="tenbs" required/>
+        @foreach (var bacsi in ViewBag.bacsis)
+        {
+            <option value="@bacsi.Tenbs">@bacsi.Tenbs</option>
+        }
+    </select><br><br>
+    
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

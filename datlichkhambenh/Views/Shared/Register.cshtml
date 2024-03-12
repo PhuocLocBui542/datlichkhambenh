@@ -1,0 +1,87 @@
+﻿
+
+<!--
+Author: Colorlib
+Author URL: https://colorlib.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+@model datlichkhambenh.Models.Benhnhan
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Creative Colorlib SignUp Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="~/register/dist/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- date -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#ngaysinh").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+</script>
+<style>
+	.custom-select {
+        width: 430px; /* Độ rộng của dropdown */
+        padding: 8px; /* Khoảng cách giữa nội dung và biên của dropdown */
+        font-size: 16px; /* Cỡ chữ của dropdown */
+        border: 1px solid #ccc; /* Đường viền của dropdown */
+        border-radius: 4px; /* Độ cong viền của dropdown */
+    }
+
+    .custom-select option {
+            padding: 8px; /* Khoảng cách giữa nội dung và biên của từng lựa chọn */
+            font-size: 16px; /* Cỡ chữ của từng lựa chọn */
+    }
+</style>
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>SignUp Form</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form method="post" asp-controller="home" asp-action="register">
+					<input class="text" type="text" asp-for="Account" placeholder="Username" required="">
+					<input class="text" type="password" asp-for="Password" placeholder="Password" required="">
+					<input class="text" type="text" asp-for="Tenbn" placeholder="Tên bệnh nhân" required="">
+					<input class="text" type="text" asp-for="Ngaysinh" id="ngaysinh" asp-format="{0:MM/dd/yyyy}" placeholder="Ngày sinh" required="">
+					<select asp-for="Gioitinh" class="custom-select">
+						<option value="Nam">Nam</option>
+						<option value="Nu">Nữ</option>
+					</select>
+					<input type="submit" value="SIGNUP">
+					@TempData["Msg"]
+				</form>
+				<p>Don't have an Account? <a asp-controller="home" asp-action="login"> Login Now!</a></p>
+			</div>
+		</div>
+		<!-- copyright -->
+		<!-- //copyright -->
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<!-- //main -->
+</body>
+</html>

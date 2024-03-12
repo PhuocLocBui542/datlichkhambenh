@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@*<h3>Tên Bệnh nhân: @ViewBag.Benhnhan.tenbn</h3>*@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bảng thông tin khám bệnh</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    textarea {
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+    }
+</style>
+</head>
+<body>
+
+<h2>Bảng thông tin khám bệnh</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Mã bác sĩ</th>
+      <th>Mã bệnh nhân</th>
+      <th>Ngày khám</th>
+      <th>Nội dung</th>
+    </tr>
+  </thead>
+  <tbody>
+     @foreach (var lichkham in ViewBag.Lichkhams)
+    {
+        <tr>
+            <td>@lichkham.Id</td>
+            <td>@lichkham.Mabs</td>
+            <td>@lichkham.Mabn</td>
+            <td>@lichkham.Ngaykham.ToString("dd/MM/yyyy")</td>
+            <td>@lichkham.Noidung</td>
+
+        </tr>
+    }
+
+    <!-- Add more rows as needed -->
+  </tbody>
+</table>
+</body>
+</html>
